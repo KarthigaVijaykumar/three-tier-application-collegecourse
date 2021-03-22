@@ -20,17 +20,3 @@ pipeline{
             }
         }
         }
-     stage('SonarQube analysis') {
-            agent any
-            steps {
-                 withSonarQubeEnv('sonar-server') {
-                 sh 'java -version'
-                 sh 'mvn sonar:sonar'
-              }
-            }
-          }
-     stage('Quality gate') {
-            steps {
-                waitForQualityGate abortPipeline: true
-            }
-        }
